@@ -1,0 +1,15 @@
+<p>We are on the home page</p>
+
+<% if logged_in? %>
+  <p>Welcome <%= username %></p>
+<a href="/logout">Logout?</a>
+<% else %>
+  <form action="/login" method="post">
+    Username: <input type="text" name="username"/><br>
+    Password: <input type="password" name="password"/><br>
+    <input type="submit" value="Login"/>
+  </form>
+<% end %>
+
+<a href="/register">Register?</a>
+<a href="/users">Users?</a>

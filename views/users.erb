@@ -1,0 +1,20 @@
+<p>All registered users</p><br>
+
+<% @users.each do |user| %>
+  <ul>
+    <li><%= user[0] %> <%= user[1] %> <%= user[2] %></li>
+  </ul>
+<% end %>
+
+<br>
+
+<p>Clear database?</p>
+
+<form action="/users" method="post">
+  <input type="submit" value="Clear!"/>
+</form>
+
+<br>
+
+<a href="/register">Register?</a><br>
+<a href="..">Home?</a>
