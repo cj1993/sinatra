@@ -46,6 +46,10 @@ class Database
     has_username?(params["username"]) || has_email?(params["email"])
   end
 
+  def single_user_details(username)
+    get_result_set.each { |entry| return entry if entry[0] == username }
+  end
+
   private
 
   def has_username?(username)
