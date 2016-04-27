@@ -1,18 +1,20 @@
-<p>All registered users</p><br>
+<% if !@database.get_result_set.empty? %>
+  <p>All registered users</p>
 
-<% @users.each do |user| %>
-  <ul>
-    <li><%= user[0] %> <%= user[1] %> <%= user[2] %></li>
-  </ul>
+  <% @users.each do |user| %>
+    <ul>
+      <li>Username: <%= user[0] %>, Password: <%= user[1] %>, Email: <%= user[2] %></li>
+    </ul>
+  <% end %>
+
+  <p>Clear database?</p>
+
+  <form action="/users" method="post">
+    <input type="submit" value="Clear!"/>
+  </form>
+  <% else %>
+    <p>No current registered users</p>
 <% end %>
-
-<br>
-
-<p>Clear database?</p>
-
-<form action="/users" method="post">
-  <input type="submit" value="Clear!"/>
-</form>
 
 <br>
 

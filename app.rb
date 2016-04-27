@@ -13,11 +13,16 @@ end
 
 helpers do
   def logged_in?
-    !session["username"].nil?
+    !!session["username"]
   end
 
   def username
     session["username"]
+  end
+
+  def expire_session
+    session["username"] = nil
+    redirect "/"
   end
 end
 
@@ -39,17 +44,11 @@ get "/users" do
 end
 
 get "/logout" do
-  session["username"] = nil
-
-  redirect "/"
+  expire_session
 end
 
 post "/register" do
-  critera = @utils.same_password?(params["password"], params["confirm_password"]) &&
-            !@database.has_username?(params["username"]) &&
-            !@database.has_email?(params["email"])
-
-  if critera
+  if @utils.details_valid?(params) && !@database.details_exist?(params)
     user_details = params.reject { |param| param =~ /_/ }.values
     @database.populate(user_details)
     redirect "/"
@@ -69,7 +68,5 @@ end
 
 post "/users" do
   @database.clear_table
-  session["username"] = nil
-
-  redirect "/"
+  expire_session
 end

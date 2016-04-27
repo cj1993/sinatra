@@ -35,24 +35,26 @@ class Database
     @database.execute("delete from #{@table_name};")
   end
 
-  def has_username?(username)
-    @database.execute("select * from #{@table_name};").each { |entry|
-      return true if entry.first == username
-    }
-    false
-  end
-
-  def has_email?(email)
-    @database.execute("select * from #{@table_name};").each { |entry|
-      return true if entry.last == email
-    }
-    false
-  end
-
   def valid_user?(username, password)
     get_result_set.each { |entry|
       return true if username == entry[0] && password == entry[1]
     }
+    false
+  end
+
+  def details_exist?(params)
+    has_username?(params["username"]) || has_email?(params["email"])
+  end
+
+  private
+
+  def has_username?(username)
+    get_result_set.each { |entry| return true if entry.first == username }
+    false
+  end
+
+  def has_email?(email)
+    get_result_set.each { |entry| return true if entry.last == email }
     false
   end
 end
