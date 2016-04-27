@@ -44,12 +44,10 @@ get "/users" do
 end
 
 get "/details" do
-  if logged_in?
-    @user = @database.single_user_details(username).join(", ")
-    erb :details
-  else
-    redirect "/"
-  end
+  redirect "/" unless logged_in?
+
+  @user = @database.single_user_details(username).join(", ")
+  erb :details
 end
 
 get "/logout" do
