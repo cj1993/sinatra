@@ -1,3 +1,68 @@
-body {
-  color: red;
+/*       *\
+  Nav Bar
+\*       */
+
+#nav {
+  margin: 0;
+  padding: 20px 20px;
+  text-align: center;
+  list-style: none;
+  background-color: #000000;
+}
+
+#nav li {
+  display: inline-block;
+}
+
+#nav li a {
+  display: block;
+  padding: 5px 5px;
+  font-size: 26px;
+  text-decoration: none;
+  color: #FFFFFF;
+  padding: 15px 15px;
+}
+
+#nav li a:hover {
+  background-color: #808080;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  border-radius: 3px;
+}
+
+/*    *\
+  Form
+\*    */
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+form {
+  padding: 20px 20px;
+  border: 1px solid #c6c7cc;
+  border-radius: 5px;
+  overflow: hidden;
+  width: 300px;
+}
+
+input {
+  border-radius: 5px;
+  margin: 0;
+  background: #fff;
+  border: 1px solid #c6c7cc;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .1);
+  color: #636466;
+  padding: 6px;
+  margin-top: 6px;
+  width: 100%;
+}
+
+label {
+  color: #395870;
+  display: block;
+  font-weight: bold;
 }
